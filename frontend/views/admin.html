@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panelAdmin">
+                <h2>Aqui você cadastra os participante e de quebra já faz o sorteio :)</h2>
+                <p>Para poder sortear, cadastre no mínimo 4 participantes</p>
+               
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control"  id="Nome" ng-model="participante.nome" placeholder="Ex: Alan Machado">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" ng-model="participante.email" placeholder="Ex: email@email.com">
+                    </div>
+                    <button type="button" class="btn btn-success" ng-show="!inUpdate" ng-click="salvar(false)">Salvar</button>
+                    <button type="button" class="btn btn-success" ng-show="inUpdate" ng-click="salvar(true)">Salvar Alteração</button>
+                    <button type="button" class="btn btn-danger" ng-show="inUpdate" ng-click="cancelarEdicao()">Cancelar Edição</button>
+                    
+                </form>
+                <button type="button" class="btn btn-primary btn-lg btn-block btn-realiza-sorteio" ng-show="participantes.length >= 4" ng-click="fazerSorteio()">Sortear e enviar para os participantes</button>               
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="list-participantes">
+                <table class="table table-striped table-participantes">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th class="text-right">Ações</th>
+                        </tr>
+                    <tbody>
+                        <tr ng-repeat="item in participantes">
+                            <td>{{item.nome}}</td>
+                            <td>{{item.email}}</td>
+                            <td class="text-right">
+                                <p>
+                                    <button type="button" class="btn btn-danger btn-sm" ng-click="deleteParticipante(item._id)">Excluir</button>
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="editar(item)">Alterar</button>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
